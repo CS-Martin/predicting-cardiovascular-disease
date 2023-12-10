@@ -9,5 +9,5 @@ Edit the env files and your Kattis username and password.
 
 ## Usage
 ```
-python3 main.py <option> <file_path> <problem>
+py main.py
 ```
