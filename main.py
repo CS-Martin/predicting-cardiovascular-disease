@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from src.preprocessing import data_preprocessing
-from src.models import mlp_with_bmi, mlp_without_bmi
+from src.models import mlp_with_bmi, mlp_without_bmi, logistic_regression_with_bmi, logistic_regression_without_bmi
 
 def read_csv(filepath):
     try:
@@ -28,7 +28,6 @@ def main():
     df = pd.concat([df.iloc[:, :position_to_insert], gender_dummies, df.iloc[:, position_to_insert+1:]], axis=1)
     df = df.drop('gender', axis=1)
 
-
     # Show correlation heatmap
     df_no_bmi = df.drop(columns=['BMI'])
     fig, ax = plt.subplots(figsize=(10, 8))  # Adjust the width and height as needed
@@ -41,6 +40,8 @@ def main():
     mlp_with_bmi(X_train_scaled_BMI, X_test_scaled_BMI, y_train, y_test)
     mlp_without_bmi(X_train_scaled, X_test_scaled, y_train, y_test)
     
-
+    logistic_regression_with_bmi(X_train_scaled_BMI, X_test_scaled_BMI, y_train, y_test)
+    logistic_regression_without_bmi(X_train_scaled, X_test_scaled, y_train, y_test)
+    
 if __name__ == '__main__':
     main()
